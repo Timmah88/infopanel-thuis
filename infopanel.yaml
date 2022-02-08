@@ -1,0 +1,353 @@
+mqtt:
+  broker: 192.168.0.16
+ #port: 8883
+  port: 1883
+  client_id: infopanel
+  keepalive: 180
+  username: user
+  password: tccm
+ #certificate: /etc/ssl/certs/DST_Root_CA_X3.pem
+  topic: infopanel/screen/#
+
+RGBMatrix:
+   led-rows: 64
+   led-cols: 64
+   led-chain: 1
+   led-parallel: 1
+   led-pwm-bits: 11
+   led-brightness: 100
+   led-gpio-mapping: adafruit-hat-pwm
+   led-scan-mode: 1
+   led-pwm-lsb-nanoseconds: 130
+   led-show-refresh: false
+   led-slowdown-gpio: 3
+   led-no-hardware-pulse: false
+DummyMatrix:
+
+sprites: 
+  I90:
+      type: Duration
+      label: Zon
+      low_val: 0
+      high_val: 41
+      data_label: travel_time_i90
+  WA520:
+      type: Duration
+      label: 520
+      low_val: 13.0
+      high_val: 23.0
+      data_label: travel_time_520
+  daily_high: 
+      type: Temperature
+      label: Max T
+      low_val: -20
+      high_val: 40
+      data_label: daily_high
+      font_name: 6x10.bdf
+  daily_low: 
+      type: Temperature
+      label: Min T
+      low_val: -20
+      high_val: 40
+      data_label: daily_low
+      font_name: 6x10.bdf
+  current: 
+      type: Temperature
+      label: |
+      low_val: -20
+      high_val: 40
+      data_label: current_temp
+      font_name: 6x10.bdf
+  KW_opgewekt: 
+      type: Temperature
+      label: KW
+      low_val: -15
+      high_val: 42
+      data_label: KW_opgewekt
+      font_name: 6x10.bdf
+  MM_regen: 
+      type: Temperature
+      label: Regen
+      low_val: -15
+      high_val: 100
+      data_label: MM_regen
+      font_name: 6x10.bdf
+  MB_druk: 
+      type: Temperature
+      label: hPa
+      low_val: 700
+      high_val: 1040
+      data_label: MB_druk
+      font_name: 6x10.bdf
+  antal_pakket: 
+      type: Duration
+      label: Pakketje
+      low_val: 0
+      high_val: 42
+      data_label: antal_pakket
+      font_name: 6x10.bdf
+  luik_status:
+      type: DynamicFancyText
+      label: Luik
+      font_name: 6x10.bdf
+      data_label: luik_status
+      #label_color: red
+      value_color: turquoise
+  wind_richting:
+      type: DynamicFancyText
+      font_name: 6x10.bdf
+      data_label: wind_richting
+      #label_color: red
+      value_color: turquoise
+      can_flip: true
+  regen_kans:
+      type: Temperature
+      label: Regen
+      low_val: -10
+      high_val: 110
+      font_name: 6x10.bdf
+      data_label: regen_kans
+  zon_kans:
+      type: Temperature
+      label: Zon %
+      low_val: -10
+      high_val: 110
+      font_name: 6x10.bdf
+      data_label: zon_kans
+  weer_kans:
+      type: DynamicFancyText
+      label: Weer
+      font_name: 6x10.bdf
+      data_label: weer_kans
+      dx: -1
+      ticks_per_movement: 3
+      #label_color: red
+      value_color: turquoise
+      can_flip: false
+  lucht_vocht:
+      type: Temperature
+      label: Vocht
+      low_val: -10
+      high_val: 110
+      font_name: 6x10.bdf
+      data_label: lucht_vocht
+  gevoel_temp:
+      type: Temperature
+      label: Gev T
+      low_val: -20
+      high_val: 40
+      font_name: 6x10.bdf
+      data_label: gevoel_temp
+  rss:
+      type: DynamicFancyText
+      label: Text
+      font_name: 6x10.bdf
+      #dx: -1
+      #ticks_per_movement: 3
+      data_label: rss
+      #label_color: red
+      value_color: turquoise
+      can_flip: false
+  tekst:
+      type: FancyText
+      text: Forellenvijver
+      pallete:
+         text:
+            - 255
+            - 0
+            - 0
+  tekst2:
+      type: FancyText
+      text: Wind
+      font_name: 6x10.bdf
+      pallete:
+         text:
+            - 255
+            - 255
+            - 0
+  scroll:
+      type: DynamicFancyText
+      text: H
+      font_name: 8x13.bdf
+      data_label: DynamicFancyText
+      #label_color: red
+      value_color: green
+  scroll2:
+      type: DynamicFancyText
+      text: ZalmForel vissen 23.-
+      #dx: 1
+      #ticks_per_movement: 3
+      font_name: 6x13.bdf
+      data_label: DynamicFancyText2
+      value_color: red
+  tijd:
+      type: DayTime
+      can_flip: false
+      #dy: 1
+      #ticks_per_movement: 2
+      strftime: '%H:%M'
+      font_name: 6x10.bdf
+      pallete:
+         text:
+            - 255
+            - 255
+            - 255
+  datum:
+      type: DayTime
+      can_flip: false
+      strftime: '%d-%b'
+      font_name: 6x10.bdf
+      pallete:
+         text:
+            - 255
+            - 255
+            - 255
+
+  logo: 
+      type: Image
+      path: /etc/infopanel/gifs/logohei4.png
+  zwart:
+      type: Image
+      path: /etc/infopanel/gifs/zwart.png
+  vuilinswagen:
+      type: Image
+      path: /etc/infopanel/gifs/vuilinswagen.gif
+ 
+scenes:
+  #welcome:
+      #type: welcome
+  #time: 
+      #type: Time
+  weer:
+      sprites:
+        - tijd: 
+            x: 0
+            y: 8
+        - current:
+            x: 35 
+            y: 8
+        - MM_regen:
+            x: 0
+            y: 20
+        - wind_richting:
+            x: 36
+            y: 31
+        - tekst2:
+            x: 0
+            y: 31
+        - lucht_vocht:
+            x: 0
+            y: 42
+        - gevoel_temp:
+            x: 0
+            y: 53
+        - MB_druk:
+            x: 0
+            y: 63
+  weer2: 
+       sprites:
+        - tijd: 
+            x: 0
+            y: 8
+        - current:
+            x: 35 
+            y: 8
+        - daily_high: 
+            x: 0 
+            y: 20
+        - daily_low: 
+            x: 0
+            y: 31
+        - regen_kans:
+            x: 0
+            y: 42
+        - zon_kans:
+            x: 0
+            y: 53
+        - weer_kans:
+            x: 0
+            y: 62         
+  info:
+      sprites: 
+        - tijd: 
+            x: 0
+            y: 8
+        - current:
+            x: 35 
+            y: 8
+        - KW_opgewekt:
+            x: 0
+            y: 20
+        - luik_status:
+            x: 0
+            y: 31
+        - antal_pakket:
+            x: 0
+            y: 42
+        #- rss:
+            #x: 0
+            #y: 53
+        - datum:
+            x: 0
+            y: 64
+  zwart:
+      sprites: 
+         - zwart:
+             y: 0
+  vuilinswagen:
+      sprites: 
+         - tijd: 
+            x: 0
+            y: 8
+         - current:
+            x: 35 
+            y: 8
+         - vuilinswagen:
+             y: 9
+  zwembad:
+      sprites:
+        - tijd: 
+            x: 0
+            y: 8
+        - current:
+            x: 35 
+            y: 8
+  
+modes: 
+  morning: 
+    - weer:
+        duration: 20
+    - weer2:
+        duration: 20
+    - info:
+        duration: 20
+  nacht:
+    - zwart:
+        duration: 30
+        brightness: 0
+  vuilinswagen:
+    - vuilinswagen:
+        duration: 20
+    - weer:
+        duration: 20
+    - weer2:
+        duration: 20   
+    - info:
+        duration: 20
+  zomer:
+    - weer:
+        duration: 20
+    - weer2:
+        duration: 20
+    - info:
+        duration: 20 
+    - zwembad:
+        duration: 20
+ 
+ 
+
+   
+
+global:
+    font_dir: /home/pi/rpi-rgb-led-matrix/fonts
+    default_mode: morning
